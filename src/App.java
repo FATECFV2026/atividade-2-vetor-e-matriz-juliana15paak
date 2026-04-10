@@ -6,15 +6,41 @@ import java.util.Scanner;
 public class App {
     
     public static void main(String[] args) throws Exception {
-        // TODO: Implementar menu interativo com as seguintes opcoes:
-        // 1. Exercicio 01: Progressao Geometrica
-        // 2. Exercicio 02: Sequencia Decrescente
-        // 3. Exercicio 03: Vetor Dinamico
-        // 4. Exercicio 04: Sequencia Crescente com Soma
-        // 5. Exercicio 05: Matriz com Valores Incrementais
-        // 6. Exercicio 06: Operacao entre Matrizes
-        // 0. Sair
-        
+        // Scanner in = new Scanner(System.in);
+        // int valor;
+        // System.out.println("1. Exercicio 01: Progressao Geometrica\r\n" + 
+        //                 "2. Exercicio 02: Sequencia Decrescente\r\n" + 
+        //                 "3. Exercicio 03: Vetor Dinamico\r\n" + 
+        //                 "4. Exercicio 04: Sequencia Crescente com Soma\r\n" + 
+        //                 "5. Exercicio 05: Matriz com Valores Incrementais\r\n" + 
+        //                 "6. Exercicio 06: Operacao entre Matrizes\r\n" + 
+        //                 "0. Sair");
+        // valor = in.nextInt();
+
+        // switch (valor) {
+        //     case 0:
+        //         break;
+        //     case 1:
+        //         progressaoGeometrica(valorInicial);
+        //         break;
+        //     case 2:
+        //         sequenciaDecrescente(valorInicial);
+        //         break;
+        //     case 3:
+        //         vetorDinamico(valorInicial);
+        //         break;
+        //     case 4:
+        //         sequenciaCresenteComSoma(valorInicial);
+        //         break;
+        //     case 5:
+        //         matrizIncrementais(tamanho);
+        //         break;
+        //     case 6:
+        //         operacaoEntreMatrizes(tamanho);
+        //     default:
+        //         break;
+        // }
+        // in.close();
         // Utilize o método lerValor para validação de entrada
         // Exiba os resultados utilizando Arrays.toString() para vetores
         // Para matrizes, utilize o método exibirMatriz()
@@ -30,8 +56,11 @@ public class App {
      */
     private static int lerValor(Scanner scanner, String mensagem, int min, int max) {
         // TODO: Implementar validacao de entrada
-        // Deve repetir a leitura ate que o valor seja valido (min < valor <= max)
-        return 0; // Remover esta linha apos implementacao
+        int valor;
+        do{
+            valor = scanner.nextInt();
+        } while (valor <= min || valor >= max);
+        return valor;
     }
     
     /**
@@ -50,11 +79,16 @@ public class App {
      */
     public static int[] progressaoGeometrica(int valorInicial) {
         // TODO: Implementar progressao geometrica
-        // Validar se valorInicial <= 20 (retornar null se invalido)
-        // Criar vetor de 10 elementos
-        // vetor[0] = valorInicial
-        // Para i=1 ate 9: vetor[i] = vetor[i-1] * 2
-        return null; // Remover esta linha apos implementacao
+
+        if (valorInicial >= 20){
+            return null;
+        }
+        int [] vetor = new int[10];
+        vetor[0] = valorInicial;
+        for(int i=1; i<10; i++){
+            vetor[i] = vetor[i-1]*2;
+        }
+        return vetor;
     }
     
     /**
@@ -64,11 +98,16 @@ public class App {
      */
     public static int[] sequenciaDecrescente(int valorInicial) {
         // TODO: Implementar sequencia decrescente
-        // Validar se valorInicial > 1 (retornar null se invalido)
-        // Criar vetor de 10 elementos
-        // vetor[0] = valorInicial
-        // Para i=1 ate 9: vetor[i] = vetor[i-1] - 1
-        return null; // Remover esta linha apos implementacao
+
+        if (valorInicial > 1 && valorInicial < 100){
+            int [] vetor = new int[10];
+            vetor[0] = valorInicial;
+            for (int i=1; i<10; i++){
+                vetor[i] = vetor[i-1] - 1;
+            }
+            return vetor;
+        }
+        return null; 
     }
     
     /**
@@ -78,10 +117,15 @@ public class App {
      */
     public static int[] vetorDinamico(int tamanho) {
         // TODO: Implementar vetor dinamico
-        // Validar se tamanho <= 1000 (retornar null se invalido)
-        // Criar vetor com tamanho especifico
-        // Para i=0 ate tamanho-1: vetor[i] = i + 1
-        return null; // Remover esta linha apos implementacao
+
+        if(1 < tamanho && tamanho<=1000){
+            int [] vetor = new int[tamanho];
+            for(int i=0; i<tamanho; i++){
+                vetor[i] = i+1;
+            }
+            return vetor;
+        }
+        return null; 
     }
     
     /**
@@ -94,7 +138,15 @@ public class App {
         // Criar vetor de 10 elementos
         // vetor[0] = valorInicial
         // Para i=1 ate 9: vetor[i] = vetor[i-1] + 1
-        return null; // Remover esta linha apos implementacao
+
+        int [] vetor = new int[10];
+        vetor[0] = valorInicial;
+        for(int i=1; i<10; i++){
+            vetor[i] = vetor[i-1] + 1;
+        }
+        int somaTotal = calcularSoma(vetor);
+        System.out.println("Soma: "+somaTotal);
+        return vetor;
     }
     
     /**
@@ -105,7 +157,11 @@ public class App {
     public static int calcularSoma(int[] vetor) {
         // TODO: Implementar calculo da soma
         // Percorrer o vetor e somar todos os elementos
-        return 0; // Remover esta linha apos implementacao
+        int soma = 0;
+        for(int i=0; i<10; i++){
+            soma += vetor[i];
+        }
+        return soma;
     }
     
     /**
@@ -177,7 +233,11 @@ public class App {
      */
     public static int[] ex04() {
         // TODO: Implementar leitura de entrada e chamar sequenciaCresenteComSoma()
-        return null; // Remover esta linha apos implementacao
+        Scanner in = new Scanner(System.in);
+        int valorInicial = lerValor(in, "Digite o valor inicial: ", 1, 100);
+        int[] resultado = sequenciaCresenteComSoma(valorInicial);
+        System.out.println(Arrays.toString(resultado));
+        return resultado;
     }
     
     /**
