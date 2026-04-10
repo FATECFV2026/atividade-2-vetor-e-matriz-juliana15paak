@@ -135,9 +135,6 @@ public class App {
      */
     public static int[] sequenciaCresenteComSoma(int valorInicial) {
         // TODO: Implementar sequencia crescente
-        // Criar vetor de 10 elementos
-        // vetor[0] = valorInicial
-        // Para i=1 ate 9: vetor[i] = vetor[i-1] + 1
 
         int [] vetor = new int[10];
         vetor[0] = valorInicial;
@@ -171,10 +168,24 @@ public class App {
      */
     public static int[][] matrizIncrementais(int tamanho) {
         // TODO: Implementar matriz com valores incrementais
-        // Criar matriz quadrada NxN
-        // Contador inicial = tamanho + 1
-        // Para cada posicao [i][j]: matriz[i][j] = contador++
-        return null; // Remover esta linha apos implementacao
+
+        if(3 < tamanho && tamanho <= 50){
+            int matriz[][] = new int[tamanho][tamanho];
+            int contador = tamanho+1;
+            for(int i=0; i<tamanho; i++){
+                for(int j=0; j<tamanho; j++){
+                    matriz[i][j] = contador++;
+                }
+            }
+            for(int i=0; i<tamanho; i++){
+                for(int j=0; j<tamanho; j++){
+                    System.out.printf("%4d", matriz[i][j]);
+                }
+                System.out.println();
+            }
+            return matriz;
+        }
+        return null; 
     }
     
     /**
@@ -184,14 +195,51 @@ public class App {
      */
     public static int[][][] operacaoEntreMatrizes(int tamanho) {
         // TODO: Implementar operacao entre matrizes
-        // Criar 3 matrizes NxN: matrizN, matrizZ, matrizSoma
-        // Contador inicial = tamanho + 1
-        // Para cada posicao [i][j]:
-        //   matrizN[i][j] = contador
-        //   matrizZ[i][j] = contador (valores iguais)
-        //   matrizSoma[i][j] = matrizN[i][j] + matrizZ[i][j]
-        //   contador++
-        // Retornar array com as 3 matrizes
+
+        if(3 < tamanho && tamanho <=50){
+            int N[][] = new int[tamanho][tamanho];
+            int contador = tamanho + 1;
+            for(int i=0; i<tamanho; i++){
+                for(int j=0; j<tamanho; j++){
+                    N[i][j] = contador++;
+                }
+            }
+
+            int Z[][] = new int[tamanho][tamanho];
+            contador = tamanho + 1;
+            for(int i=0; i<tamanho; i++){
+                for(int j=0; j<tamanho; j++){
+                    Z[i][j] = contador++;
+                }
+            }
+
+            int soma[][] = new int[tamanho][tamanho];
+            for(int i=0; i<tamanho; i++){
+                for(int j=0; j<tamanho; j++){
+                    soma[i][j] = N[i][j] + Z[i][j];
+                }
+            }
+
+            // saída
+            for(int i=0; i<tamanho; i++){
+                for(int j=0; j<tamanho; j++){
+                    System.out.printf("%4d", N[i][j]);
+                }
+            }
+            for(int i=0; i<tamanho; i++){
+                for(int j=0; j<tamanho; j++){
+                    System.out.printf("%4d", Z[i][j]);
+                }
+            }
+            for(int i=0; i<tamanho; i++){
+                for(int j=0; j<tamanho; j++){
+                    System.out.printf("%4d", soma[i][j]);
+                }
+            }
+            return null;
+        }
+            
+
         return null; // Remover esta linha apos implementacao
     }
     
