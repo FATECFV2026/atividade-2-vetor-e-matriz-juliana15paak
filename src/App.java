@@ -1,308 +1,181 @@
-
-
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class App {
-    
-    public static void main(String[] args) throws Exception {
-        // Scanner in = new Scanner(System.in);
-        // int valor;
-        // System.out.println("1. Exercicio 01: Progressao Geometrica\r\n" + 
-        //                 "2. Exercicio 02: Sequencia Decrescente\r\n" + 
-        //                 "3. Exercicio 03: Vetor Dinamico\r\n" + 
-        //                 "4. Exercicio 04: Sequencia Crescente com Soma\r\n" + 
-        //                 "5. Exercicio 05: Matriz com Valores Incrementais\r\n" + 
-        //                 "6. Exercicio 06: Operacao entre Matrizes\r\n" + 
-        //                 "0. Sair");
-        // valor = in.nextInt();
 
-        // switch (valor) {
-        //     case 0:
-        //         break;
-        //     case 1:
-        //         progressaoGeometrica(valorInicial);
-        //         break;
-        //     case 2:
-        //         sequenciaDecrescente(valorInicial);
-        //         break;
-        //     case 3:
-        //         vetorDinamico(valorInicial);
-        //         break;
-        //     case 4:
-        //         sequenciaCresenteComSoma(valorInicial);
-        //         break;
-        //     case 5:
-        //         matrizIncrementais(tamanho);
-        //         break;
-        //     case 6:
-        //         operacaoEntreMatrizes(tamanho);
-        //     default:
-        //         break;
-        // }
-        // in.close();
-        // Utilize o método lerValor para validação de entrada
-        // Exiba os resultados utilizando Arrays.toString() para vetores
-        // Para matrizes, utilize o método exibirMatriz()
+    public static void main(String[] args) throws Exception {
+        Scanner in = new Scanner(System.in);
+        int opcao;
+
+        do {
+            System.out.println("\n--- MENU DE EXERCÍCIOS ---");
+            System.out.println("1. Progressão Geométrica");
+            System.out.println("2. Sequência Decrescente");
+            System.out.println("3. Vetor Dinâmico");
+            System.out.println("4. Sequência Crescente com Soma");
+            System.out.println("5. Matriz com Valores Incrementais");
+            System.out.println("6. Operação entre Matrizes");
+            System.out.println("0. Sair");
+            System.out.print("Escolha uma opção: ");
+            
+            opcao = in.nextInt();
+
+            switch (opcao) {
+                case 1: ex01(); break;
+                case 2: ex02(); break;
+                case 3: ex03(); break;
+                case 4: ex04(); break;
+                case 5: ex05(); break;
+                case 6: ex06(); break;
+                case 0: System.out.println("Saindo..."); break;
+                default: System.out.println("Opção inválida!");
+            }
+        } while (opcao != 0);
+        
+        in.close();
     }
-    
-    /**
-     * Metodo auxiliar para ler e validar entrada do usuario
-     * @param scanner Scanner para leitura
-     * @param mensagem Mensagem a ser exibida
-     * @param min Valor minimo (exclusivo)
-     * @param max Valor maximo (inclusivo)
-     * @return Valor valido lido
-     */
-    private static int lerValor(Scanner scanner, String mensagem, int min, int max) {
-        // TODO: Implementar validacao de entrada
+
+    // --- MÉTODOS AUXILIARES ---
+
+    private static int lerValor(Scanner scanner, String mensagem, int min, int max, boolean maxInclusivo) {
         int valor;
-        do{
+        do {
+            // System.out.print(mensagem); // Opcional
             valor = scanner.nextInt();
-        } while (valor <= min || valor >= max);
+        } while (valor <= min || (maxInclusivo ? valor > max : valor >= max));
         return valor;
     }
-    
-    /**
-     * Metodo auxiliar para exibir matriz formatada
-     * @param matriz Matriz a ser exibida
-     */
+
     private static void exibirMatriz(int[][] matriz) {
-        // TODO: Implementar exibicao da matriz
-        // Use System.out.printf("%4d ", matriz[i][j]) para formatacao
-    }
-    
-    /**
-     * Exercicio 01: Progressao Geometrica
-     * @param valorInicial Valor inicial (deve ser <= 20)
-     * @return Vetor de 10 elementos com progressao geometrica (dobro) ou null se invalido
-     */
-    public static int[] progressaoGeometrica(int valorInicial) {
-        // TODO: Implementar progressao geometrica
-
-        if (valorInicial >= 20){
-            return null;
-        }
-        int [] vetor = new int[10];
-        vetor[0] = valorInicial;
-        for(int i=1; i<10; i++){
-            vetor[i] = vetor[i-1]*2;
-        }
-        return vetor;
-    }
-    
-    /**
-     * Exercicio 02: Sequencia Decrescente
-     * @param valorInicial Valor inicial (deve ser > 1)
-     * @return Vetor de 10 elementos com sequencia decrescente ou null se invalido
-     */
-    public static int[] sequenciaDecrescente(int valorInicial) {
-        // TODO: Implementar sequencia decrescente
-
-        if (valorInicial > 1 && valorInicial < 100){
-            int [] vetor = new int[10];
-            vetor[0] = valorInicial;
-            for (int i=1; i<10; i++){
-                vetor[i] = vetor[i-1] - 1;
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                System.out.printf("%4d ", matriz[i][j]);
             }
-            return vetor;
+            System.out.println();
         }
-        return null; 
     }
-    
-    /**
-     * Exercicio 03: Vetor Dinamico
-     * @param tamanho Tamanho do vetor (deve ser <= 1000)
-     * @return Vetor com sequencia de 1 ate tamanho ou null se invalido
-     */
-    public static int[] vetorDinamico(int tamanho) {
-        // TODO: Implementar vetor dinamico
 
-        if(1 < tamanho && tamanho<=1000){
-            int [] vetor = new int[tamanho];
-            for(int i=0; i<tamanho; i++){
-                vetor[i] = i+1;
-            }
-            return vetor;
-        }
-        return null; 
-    }
-    
-    /**
-     * Exercicio 04: Sequencia Crescente com Soma
-     * @param valorInicial Valor inicial
-     * @return Vetor de 10 elementos com sequencia crescente
-     */
-    public static int[] sequenciaCresenteComSoma(int valorInicial) {
-        // TODO: Implementar sequencia crescente
-
-        int [] vetor = new int[10];
-        vetor[0] = valorInicial;
-        for(int i=1; i<10; i++){
-            vetor[i] = vetor[i-1] + 1;
-        }
-        int somaTotal = calcularSoma(vetor);
-        System.out.println("Soma: "+somaTotal);
-        return vetor;
-    }
-    
-    /**
-     * Calcula a soma de todos os elementos do vetor
-     * @param vetor Vetor para calcular a soma
-     * @return Soma de todos os elementos
-     */
     public static int calcularSoma(int[] vetor) {
-        // TODO: Implementar calculo da soma
-        // Percorrer o vetor e somar todos os elementos
         int soma = 0;
-        for(int i=0; i<10; i++){
-            soma += vetor[i];
-        }
+        for (int v : vetor) soma += v;
         return soma;
     }
-    
-    /**
-     * Exercicio 05: Matriz com Valores Incrementais
-     * @param tamanho Tamanho da matriz quadrada
-     * @return Matriz NxN com valores incrementais iniciando em tamanho+1
-     */
+
+    // --- LÓGICA DOS EXERCÍCIOS ---
+
+    public static int[] progressaoGeometrica(int valorInicial) {
+        if (valorInicial > 20) return null;
+        int[] vetor = new int[10];
+        vetor[0] = valorInicial;
+        for (int i = 1; i < 10; i++) vetor[i] = vetor[i - 1] * 2;
+        return vetor;
+    }
+
+    public static int[] sequenciaDecrescente(int valorInicial) {
+        if (valorInicial <= 1 || valorInicial >= 100) return null;
+        int[] vetor = new int[10];
+        vetor[0] = valorInicial;
+        for (int i = 1; i < 10; i++) vetor[i] = vetor[i - 1] - 1;
+        return vetor;
+    }
+
+    public static int[] vetorDinamico(int tamanho) {
+        if (tamanho <= 1 || tamanho > 1000) return null;
+        int[] vetor = new int[tamanho];
+        for (int i = 0; i < tamanho; i++) vetor[i] = i + 1;
+        return vetor;
+    }
+
+    public static int[] sequenciaCresenteComSoma(int valorInicial) {
+        if (valorInicial <= 1 || valorInicial >= 100) return null;
+        int[] vetor = new int[10];
+        vetor[0] = valorInicial;
+        for (int i = 1; i < 10; i++) vetor[i] = vetor[i - 1] + 1;
+        
+        System.out.println("Soma: " + calcularSoma(vetor));
+        return vetor;
+    }
+
     public static int[][] matrizIncrementais(int tamanho) {
-        // TODO: Implementar matriz com valores incrementais
-
-        if(3 < tamanho && tamanho <= 50){
-            int matriz[][] = new int[tamanho][tamanho];
-            int contador = tamanho+1;
-            for(int i=0; i<tamanho; i++){
-                for(int j=0; j<tamanho; j++){
-                    matriz[i][j] = contador++;
-                }
+        if (tamanho <= 3 || tamanho > 50) return null;
+        int[][] matriz = new int[tamanho][tamanho];
+        int contador = tamanho + 1;
+        for (int i = 0; i < tamanho; i++) {
+            for (int j = 0; j < tamanho; j++) {
+                matriz[i][j] = contador++;
             }
-            for(int i=0; i<tamanho; i++){
-                for(int j=0; j<tamanho; j++){
-                    System.out.printf("%4d", matriz[i][j]);
-                }
-                System.out.println();
-            }
-            return matriz;
         }
-        return null; 
+        exibirMatriz(matriz);
+        return matriz;
     }
-    
-    /**
-     * Exercicio 06: Operacao entre Matrizes
-     * @param tamanho Tamanho das matrizes quadradas
-     * @return Array com 3 matrizes: [0]=N, [1]=Z, [2]=Soma
-     */
+
     public static int[][][] operacaoEntreMatrizes(int tamanho) {
-        // TODO: Implementar operacao entre matrizes
+        if (tamanho <= 3 || tamanho > 50) return null;
+        int[][] N = new int[tamanho][tamanho];
+        int[][] Z = new int[tamanho][tamanho];
+        int[][] Soma = new int[tamanho][tamanho];
+        int contador = tamanho + 1;
 
-        if(3 < tamanho && tamanho <=50){
-            int N[][] = new int[tamanho][tamanho];
-            int contador = tamanho + 1;
-            for(int i=0; i<tamanho; i++){
-                for(int j=0; j<tamanho; j++){
-                    N[i][j] = contador++;
-                }
+        for (int i = 0; i < tamanho; i++) {
+            for (int j = 0; j < tamanho; j++) {
+                N[i][j] = contador;
+                Z[i][j] = contador;
+                Soma[i][j] = N[i][j] + Z[i][j];
+                contador++;
             }
-
-            int Z[][] = new int[tamanho][tamanho];
-            contador = tamanho + 1;
-            for(int i=0; i<tamanho; i++){
-                for(int j=0; j<tamanho; j++){
-                    Z[i][j] = contador++;
-                }
-            }
-
-            int soma[][] = new int[tamanho][tamanho];
-            for(int i=0; i<tamanho; i++){
-                for(int j=0; j<tamanho; j++){
-                    soma[i][j] = N[i][j] + Z[i][j];
-                }
-            }
-
-            // saída
-            for(int i=0; i<tamanho; i++){
-                for(int j=0; j<tamanho; j++){
-                    System.out.printf("%4d", N[i][j]);
-                }
-            }
-            for(int i=0; i<tamanho; i++){
-                for(int j=0; j<tamanho; j++){
-                    System.out.printf("%4d", Z[i][j]);
-                }
-            }
-            for(int i=0; i<tamanho; i++){
-                for(int j=0; j<tamanho; j++){
-                    System.out.printf("%4d", soma[i][j]);
-                }
-            }
-            return null;
         }
-            
-
-        return null; // Remover esta linha apos implementacao
+        exibirMatriz(N);
+        exibirMatriz(Z);
+        exibirMatriz(Soma);
+        return new int[][][] { N, Z, Soma };
     }
-    
+
     // ========================================
     // METODOS REQUERIDOS PELO AUTOGRADER
     // NAO REMOVER - Necessarios para avaliacao automatica
     // ========================================
-    
-    /**
-     * Metodo ex01 para compatibilidade com autograder
-     * @return resultado do exercicio 01
-     */
+
     public static int[] ex01() {
-        // TODO: Implementar leitura de entrada e chamar progressaoGeometrica()
-        return null; // Remover esta linha apos implementacao
-    }
-    
-    /**
-     * Metodo ex02 para compatibilidade com autograder
-     * @return resultado do exercicio 02
-     */
-    public static int[] ex02() {
-        // TODO: Implementar leitura de entrada e chamar sequenciaDecrescente()
-        return null; // Remover esta linha apos implementacao
-    }
-    
-    /**
-     * Metodo ex03 para compatibilidade com autograder
-     * @return resultado do exercicio 03
-     */
-    public static int[] ex03() {
-        // TODO: Implementar leitura de entrada e chamar vetorDinamico()
-        return null; // Remover esta linha apos implementacao
-    }
-    
-    /**
-     * Metodo ex04 para compatibilidade com autograder
-     * @return resultado do exercicio 04
-     */
-    public static int[] ex04() {
-        // TODO: Implementar leitura de entrada e chamar sequenciaCresenteComSoma()
         Scanner in = new Scanner(System.in);
-        int valorInicial = lerValor(in, "Digite o valor inicial: ", 1, 100);
-        int[] resultado = sequenciaCresenteComSoma(valorInicial);
-        System.out.println(Arrays.toString(resultado));
-        return resultado;
+        int v = lerValor(in, "", -9999, 20, true);
+        int[] res = progressaoGeometrica(v);
+        System.out.println(Arrays.toString(res));
+        return res;
     }
-    
-    /**
-     * Metodo ex05 para compatibilidade com autograder
-     * @return resultado do exercicio 05
-     */
+
+    public static int[] ex02() {
+        Scanner in = new Scanner(System.in);
+        int v = lerValor(in, "", 1, 100, false);
+        int[] res = sequenciaDecrescente(v);
+        System.out.println(Arrays.toString(res));
+        return res;
+    }
+
+    public static int[] ex03() {
+        Scanner in = new Scanner(System.in);
+        int v = lerValor(in, "", 1, 1000, true);
+        int[] res = vetorDinamico(v);
+        System.out.println(Arrays.toString(res));
+        return res;
+    }
+
+    public static int[] ex04() {
+        Scanner in = new Scanner(System.in);
+        int v = lerValor(in, "", 1, 100, false);
+        int[] res = sequenciaCresenteComSoma(v);
+        System.out.println(Arrays.toString(res));
+        return res;
+    }
+
     public static int[][] ex05() {
-        // TODO: Implementar leitura de entrada e chamar matrizIncrementais()
-        return null; // Remover esta linha apos implementacao
+        Scanner in = new Scanner(System.in);
+        int v = lerValor(in, "", 3, 50, true);
+        return matrizIncrementais(v);
     }
-    
-    /**
-     * Metodo ex06 para compatibilidade com autograder
-     * @return resultado do exercicio 06
-     */
+
     public static int[][][] ex06() {
-        // TODO: Implementar leitura de entrada e chamar operacaoEntreMatrizes()
-        return null; // Remover esta linha apos implementacao
+        Scanner in = new Scanner(System.in);
+        int v = lerValor(in, "", 3, 50, true);
+        return operacaoEntreMatrizes(v);
     }
 }
